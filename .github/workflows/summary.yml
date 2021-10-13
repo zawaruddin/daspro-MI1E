@@ -30,9 +30,9 @@ jobs:
           MERGE_LABELS: ""
           GITHUB_TOKEN: ${{ secrets.TOKEN }}
 
-      - name: Discord notification
-        env:
-          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
-        uses: Ilshidur/action-discord@master
+      - name: Telegram notification
+        uses: appleboy/telegram-action@master
         with:
-          args: 'The summary ${{github.event.pull_request.head.repo.full_name }} has been accepted.'
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: Notifikasi: User ${{ github.event.pull_request.user.login }} telah mengumpulkan tugas.
